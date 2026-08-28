@@ -1,4 +1,4 @@
-export const WHATSAPP_NUMBER = "55938435630";
+export const WHATSAPP_NUMBER = "244938435630";
 export const WHATSAPP_BASE_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
 export const WHATSAPP_DEFAULT_MESSAGE = "Olá, ResolvaTech! Gostaria de falar sobre um projeto.";
 export const WHATSAPP_URL = `${WHATSAPP_BASE_URL}?text=${encodeURIComponent(WHATSAPP_DEFAULT_MESSAGE)}`;
@@ -6,7 +6,7 @@ export const WHATSAPP_URL = `${WHATSAPP_BASE_URL}?text=${encodeURIComponent(WHAT
 export const getWhatsAppUrl = (message: string) =>
   `${WHATSAPP_BASE_URL}?text=${encodeURIComponent(message)}`;
 
-export const COMPANY_YEAR = 2019;
+export const COMPANY_YEAR = 2023;
 export const CURRENT_YEAR = new Date().getFullYear();
 export const YEARS_OF_OPERATION = CURRENT_YEAR - COMPANY_YEAR;
 
@@ -211,17 +211,17 @@ export interface Stat {
 }
 
 export const stats: Stat[] = [
-  { value: 50, suffix: "+", label: "Projetos entregues" },
-  { value: 30, suffix: "+", label: "Clientes recorrentes" },
+  { value: 15, suffix: "+", label: "Projetos entregues" },
+  { value: 10, suffix: "+", label: "Clientes recorrentes" },
   { value: YEARS_OF_OPERATION, suffix: "+", label: "Anos de operação" },
-  { value: 3, suffix: "+", label: "Países atendidos" },
+  { value: 2, suffix: "+", label: "Países atendidos" },
 ];
 
 export const recognitionStats: Stat[] = [
-  { value: 50, suffix: "+", label: "PROJETOS ENTREGUES" },
-  { value: 90, suffix: "%", label: "CLIENTES RECORRENTES" },
+  { value: 15, suffix: "+", label: "PROJETOS ENTREGUES" },
+  { value: 98, suffix: "%", label: "TAXA DE SATISFAÇÃO" },
   { value: YEARS_OF_OPERATION, suffix: "+", label: "ANOS DE MERCADO" },
-  { value: 3, suffix: "+", label: "PAÍSES ATENDIDOS" },
+  { value: 2, suffix: "+", label: "PAÍSES ATENDIDOS" },
 ];
 
 export const navLinks = [

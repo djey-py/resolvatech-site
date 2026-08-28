@@ -64,9 +64,6 @@ export function FinalCTA() {
 
           {/* Contact details */}
           <div className="space-y-3">
-            <div className="text-text-muted text-sm font-mono">
-              +55 93843-5630
-            </div>
             <div className="inline-flex items-center gap-2 text-xs text-text-muted">
               <span className="w-1.5 h-1.5 bg-accent rounded-full animate-pulse" />
               Resposta rápida pelo WhatsApp

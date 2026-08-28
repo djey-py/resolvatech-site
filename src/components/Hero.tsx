@@ -1,7 +1,47 @@
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { COMPANY_YEAR, getWhatsAppUrl } from "../data";
 
 export function Hero() {
+
+  const services = [
+    "site.",
+    "sistema.",
+    "app.",
+    "loja virtual.",
+  ];
+
+  const [serviceIndex, setServiceIndex] = useState(0);
+  const [displayedText, setDisplayedText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    const currentService = services[serviceIndex];
+
+    const typingSpeed = isDeleting ? 50 : 100;
+
+    const timer = setTimeout(() => {
+      if (!isDeleting) {
+        const nextText = currentService.slice(0, displayedText.length + 1);
+        setDisplayedText(nextText);
+
+        if (nextText === currentService) {
+          setTimeout(() => setIsDeleting(true), 1500);
+        }
+      } else {
+        const nextText = currentService.slice(0, displayedText.length - 1);
+        setDisplayedText(nextText);
+
+        if (nextText === "") {
+          setIsDeleting(false);
+          setServiceIndex((prev) => (prev + 1) % services.length);
+        }
+      }
+    }, typingSpeed);
+
+    return () => clearTimeout(timer);
+  }, [displayedText, isDeleting, serviceIndex]);
+
   return (
     <section id="inicio" className="relative min-h-[90vh] flex items-center overflow-hidden">
       {/* Background grid pattern */}
@@ -65,17 +105,22 @@ export function Hero() {
           </motion.div>
 
           {/* Headline */}
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.05] tracking-tight mb-6"
-          >
-            Seu próximo diferencial{" "}
-            <br className="hidden sm:block" />
-            pode ser{" "}
-            <span className="text-accent italic glow-green-text">software.</span>
-          </motion.h1>
+        
+<motion.h1
+  initial={{ opacity: 0, y: 30 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+  className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.05] tracking-tight mb-6"
+>
+  Seu próximo diferencial{" "}
+  <br className="hidden sm:block" />
+  pode ser{" "}
+  <span className="text-accent italic glow-green-text">
+    {displayedText}
+    <span className="not-italic ml-1 animate-pulse">|</span>
+  </span>
+</motion.h1>
+
 
           {/* Subheadline */}
           <motion.p
