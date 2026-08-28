@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
 /**
@@ -9,23 +10,27 @@ import { motion, AnimatePresence } from "framer-motion";
  *  4. "Te" slides in, landing between "solva" and "ch"  →  ResolvaTech
  */
 export function Splash() {
-  return (
+  return createPortal(
     <motion.div
-      className="fixed inset-0 z-[10000] flex items-center justify-center bg-background"
+      className="fixed inset-0 z-[10000] flex items-center justify-center overflow-hidden bg-background"
+      style={{ position: "fixed", top: 0, right: 0, bottom: 0, left: 0 }}
       exit={{ opacity: 0, transition: { duration: 0.6, ease: "easeInOut" } }}
     >
+
       {/* ambient glow */}
       <motion.div
-        className="absolute w-64 h-64 rounded-full bg-accent/10 blur-3xl"
+        className="absolute w-48 h-48 sm:w-64 sm:h-64 rounded-full bg-accent/10 blur-3xl"
         initial={{ opacity: 0, scale: 0.6 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.4, ease: "easeOut" }}
       />
 
-      <div
-        className="relative flex items-center font-heading text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-text-primary glow-green-text"
-        aria-label="ResolvaTech"
-      >
+      <div className="relative flex flex-col items-center gap-4 px-4">
+        <div
+          className="flex items-center justify-center whitespace-nowrap font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-text-primary glow-green-text"
+          aria-label="ResolvaTech"
+        >
+
         {/* Re */}
         <motion.span
           initial={{ opacity: 0, y: 24 }}
@@ -63,16 +68,18 @@ export function Splash() {
         >
           ch
         </motion.span>
-      </div>
+        </div>
 
-      {/* underline sweep */}
-      <motion.div
-        className="absolute bottom-[calc(50%-2.5rem)] h-px bg-accent/60"
-        initial={{ width: 0, opacity: 0 }}
-        animate={{ width: "min(60vw, 420px)", opacity: 1 }}
-        transition={{ delay: 1.9, duration: 0.5, ease: "easeOut" }}
-      />
-    </motion.div>
+        {/* underline sweep — relative to the word, so it stays aligned on any screen size */}
+        <motion.div
+          className="h-px bg-accent/60"
+          initial={{ width: 0, opacity: 0 }}
+          animate={{ width: "min(70vw, 420px)", opacity: 1 }}
+          transition={{ delay: 1.9, duration: 0.5, ease: "easeOut" }}
+        />
+      </div>
+    </motion.div>,
+    document.body
   );
 }
 
